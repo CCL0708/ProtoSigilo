@@ -1,0 +1,807 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Jugador.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemigo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Path2D7.gd" type="Script" id=4]
+[ext_resource path="res://Moneda.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nivel1.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 50, 400 )
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 675, 249, 0, 0, 0, 0, 675, 248, 0, 0, 0, 0, 670, 390, 0, 0, 0, 0, 1284, 394, 0, 0, 0, 0, 1510, 385, 0, 0, 0, 0, 1505, 286, 0, 0, 0, 0, 1684, 287, 0, 0, 0, 0, 1830, 292, 0, 0, 0, 0, 1834, 369, 0, 0, 0, 0, 1922, 378, 0, 0, 0, 0, 1948, 109, 0, 0, 0, 0, 1539, 112, 0, 0, 0, 0, 1532, 187, 0, 0, 0, 0, 1607, 195, 0, 0, 0, 0, 1616, 277, 0, 0, 0, 0, 1509, 274, 0, 0, 0, 0, 1125, 281, 0, 0, 0, 0, 1343, 268, 0, 0, 0, 0, 1348, 185, 0, 0, 0, 0, 1103, 190, 0, 0, 0, 0, 1095, 114, 0, 0, 0, 0, 799, 109, 0, 0, 0, 0, 787, 249, 0, 0, 0, 0, 675, 249 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 172, 72, 0, 0, 0, 0, 469, 73, 0, 0, 0, 0, 478, 152, 0, 0, 0, 0, 713, 155, 0, 0, 0, 0, 714, 230, 0, 0, 0, 0, 870, 243, 0, 0, 0, 0, 874, 341, 0, 0, 0, 0, 56, 340, 0, 0, 0, 0, 61, 236, 0, 0, 0, 0, 164, 236, 0, 0, 0, 0, 172, 72 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 318, 439, 0, 0, 0, 0, 316, 342, 0, 0, 0, 0, 651, 342, 0, 0, 0, 0, 651, 423, 0, 0, 0, 0, 884, 435, 0, 0, 0, 0, 896, 549, 0, 0, 0, 0, 758, 551, 0, 0, 0, 0, 872, 541, 0, 0, 0, 0, 866, 444, 0, 0, 0, 0, 582, 453, 0, 0, 0, 0, 572, 545, 0, 0, 0, 0, 275, 551, 0, 0, 0, 0, 563, 538, 0, 0, 0, 0, 551, 447, 0, 0, 0, 0, 628, 422, 0, 0, 0, 0, 629, 343, 0, 0, 0, 0, 346, 352, 0, 0, 0, 0, 318, 439 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 558, 48, 0, 0, 0, 0, 796, 44, 0, 0, 0, 0, 728, 64, 0, 0, 0, 0, 734, 144, 0, 0, 0, 0, 751, 141, 0, 0, 0, 0, 743, 220, 0, 0, 0, 0, 496, 215, 0, 0, 0, 0, 497, 230, 0, 0, 0, 0, 698, 231, 0, 0, 0, 0, 693, 142, 0, 0, 0, 0, 469, 141, 0, 0, 0, 0, 477, 126, 0, 0, 0, 0, 684, 127, 0, 0, 0, 0, 688, 68, 0, 0, 0, 0, 558, 48 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 899, 71, 0, 0, 0, 0, 1311, 75, 0, 0, 0, 0, 1301, 292, 0, 0, 0, 0, 1214, 281, 0, 0, 0, 0, 1207, 230, 0, 0, 0, 0, 1157, 210, 0, 0, 0, 0, 1104, 228, 0, 0, 0, 0, 986, 222, 0, 0, 0, 0, 977, 146, 0, 0, 0, 0, 900, 144, 0, 0, 0, 0, 899, 71 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1047, 233, 0, 0, 0, 0, 884, 234, 0, 0, 0, 0, 879, 338, 0, 0, 0, 0, 671, 329, 0, 0, 0, 0, 645, 438, 0, 0, 0, 0, 896, 443, 0, 0, 0, 0, 900, 539, 0, 0, 0, 0, 1303, 550, 0, 0, 0, 0, 1307, 406, 0, 0, 0, 0, 1069, 395, 0, 0, 0, 0, 1049, 243, 0, 0, 0, 0, 1047, 233 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 73, 540, 0, 0, 0, 0, 70, 559, 0, 0, 0, 0, 543, 549, 0, 0, 0, 0, 551, 435, 0, 0, 0, 0, 877, 447, 0, 0, 0, 0, 885, 554, 0, 0, 0, 0, 1317, 556, 0, 0, 0, 0, 1321, 386, 0, 0, 0, 0, 1081, 396, 0, 0, 0, 0, 1059, 242, 0, 0, 0, 0, 1199, 237, 0, 0, 0, 0, 1218, 321, 0, 0, 0, 0, 1317, 329, 0, 0, 0, 0, 1308, 64, 0, 0, 0, 0, 890, 71, 0, 0, 0, 0, 893, 134, 0, 0, 0, 0, 973, 143, 0, 0, 0, 0, 972, 219, 0, 0, 0, 0, 1064, 227, 0, 0, 0, 0, 1066, 378, 0, 0, 0, 0, 1303, 397, 0, 0, 0, 0, 1304, 540, 0, 0, 0, 0, 754, 547, 0, 0, 0, 0, 902, 550, 0, 0, 0, 0, 889, 443, 0, 0, 0, 0, 692, 444, 0, 0, 0, 0, 672, 326, 0, 0, 0, 0, 883, 329, 0, 0, 0, 0, 891, 224, 0, 0, 0, 0, 488, 229, 0, 0, 0, 0, 720, 233, 0, 0, 0, 0, 716, 63, 0, 0, 0, 0, 549, 53, 0, 0, 0, 0, 719, 63, 0, 0, 0, 0, 719, 144, 0, 0, 0, 0, 805, 137, 0, 0, 0, 0, 476, 138, 0, 0, 0, 0, 462, 56, 0, 0, 0, 0, 153, 54, 0, 0, 0, 0, 152, 137, 0, 0, 0, 0, 370, 136, 0, 0, 0, 0, 158, 143, 0, 0, 0, 0, 154, 215, 0, 0, 0, 0, 69, 225, 0, 0, 0, 0, 74, 328, 0, 0, 0, 0, 305, 335, 0, 0, 0, 0, 308, 423, 0, 0, 0, 0, 434, 433, 0, 0, 0, 0, 310, 425, 0, 0, 0, 0, 313, 332, 0, 0, 0, 0, 641, 327, 0, 0, 0, 0, 662, 436, 0, 0, 0, 0, 887, 439, 0, 0, 0, 0, 563, 434, 0, 0, 0, 0, 543, 551, 0, 0, 0, 0, 551, 441, 0, 0, 0, 0, 676, 438, 0, 0, 0, 0, 664, 310, 0, 0, 0, 0, 645, 446, 0, 0, 0, 0, 540, 434, 0, 0, 0, 0, 533, 542, 0, 0, 0, 0, 87, 533, 0, 0, 0, 0, 73, 540 )
+}
+
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 434, 443, 0, 0, 0, 0, 128, 444, 0, 0, 0, 0, 312, 424, 0, 0, 0, 0, 315, 322, 0, 0, 0, 0, 60, 332, 0, 0, 0, 0, 58, 221, 0, 0, 0, 0, 153, 223, 0, 0, 0, 0, 157, 144, 0, 0, 0, 0, 375, 139, 0, 0, 0, 0, 171, 132, 0, 0, 0, 0, 169, 49, 0, 0, 0, 0, 456, 63, 0, 0, 0, 0, 159, 70, 0, 0, 0, 0, 458, 67, 0, 0, 0, 0, 477, 144, 0, 0, 0, 0, 707, 139, 0, 0, 0, 0, 713, 218, 0, 0, 0, 0, 871, 223, 0, 0, 0, 0, 875, 331, 0, 0, 0, 0, 681, 319, 0, 0, 0, 0, 650, 387, 0, 0, 0, 0, 882, 435, 0, 0, 0, 0, 534, 426, 0, 0, 0, 0, 884, 460, 0, 0, 0, 0, 522, 446, 0, 0, 0, 0, 661, 414, 0, 0, 0, 0, 656, 318, 0, 0, 0, 0, 315, 320, 0, 0, 0, 0, 320, 413, 0, 0, 0, 0, 434, 443 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1310, 58, 0, 0, 0, 0, 1302, 384, 0, 0, 0, 0, 1078, 380, 0, 0, 0, 0, 1060, 226, 0, 0, 0, 0, 1201, 229, 0, 0, 0, 0, 1217, 314, 0, 0, 0, 0, 1311, 321, 0, 0, 0, 0, 1304, 541, 0, 0, 0, 0, 761, 551, 0, 0, 0, 0, 877, 542, 0, 0, 0, 0, 881, 435, 0, 0, 0, 0, 575, 437, 0, 0, 0, 0, 550, 547, 0, 0, 0, 0, 94, 545, 0, 0, 0, 0, 543, 534, 0, 0, 0, 0, 560, 412, 0, 0, 0, 0, 642, 427, 0, 0, 0, 0, 658, 319, 0, 0, 0, 0, 880, 334, 0, 0, 0, 0, 884, 236, 0, 0, 0, 0, 1119, 232, 0, 0, 0, 0, 1116, 154, 0, 0, 0, 0, 1106, 150, 0, 0, 0, 0, 1110, 226, 0, 0, 0, 0, 974, 218, 0, 0, 0, 0, 963, 152, 0, 0, 0, 0, 908, 144, 0, 0, 0, 0, 903, 67, 0, 0, 0, 0, 1310, 58 )
+}
+
+[node name="Escena" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Paredes" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1370, 361 )
+scale = Vector2( 0.1, 1 )
+collision_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1169, 140 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D3"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D3"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 562, 589 )
+rotation = 1.57079
+scale = Vector2( 0.1, 2 )
+collision_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D2"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D2"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1256, 181 )
+rotation = 3.14159
+scale = Vector2( 0.1, 0.2 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D4"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D4"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 99, 86 )
+rotation = 3.14159
+scale = Vector2( 0.1, 0.2 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D5"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D5"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1142, 496 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D6"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D6"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1143, 426 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D7"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D7"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1217, 355 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D8"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D8"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1210, 181 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D9"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D9"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1023, 381 )
+rotation = 3.14159
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D10"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D10"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 823, 380 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D11"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D11"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 5, 403 )
+scale = Vector2( 0.1, 1 )
+collision_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D12"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D12"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 581, 15 )
+rotation = -1.57079
+scale = Vector2( 0.1, 2 )
+collision_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D13"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D13"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1103, 97 )
+rotation = -1.57079
+scale = Vector2( 0.1, 0.4 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D14"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D14"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D15" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1170, 312 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D15"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D15"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D16" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1128, 268 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D16"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D16"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D17" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1061, 180 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D17"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D17"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D18" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1022, 138 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D18"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D18"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D19" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 943, 380 )
+rotation = 3.14159
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D19"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D19"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D20" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 984, 495 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D20"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D20"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D21" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 984, 267 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D21"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D21"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D22" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 521, 266 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.8 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D22"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D22"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D23" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 1259, 462 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D23"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D23"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D24" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 886, 175 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D24"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D24"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D25" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 850, 98 )
+scale = Vector2( 0.1, 0.2 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D25"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D25"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D26" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 720, 494 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D26"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D26"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D27" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 490, 378 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D27"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D27"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D28" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 340, 491 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.4 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D28"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D28"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D29" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 57, 492 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.4 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D29"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D29"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D30" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 800, 175 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D30"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D30"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D31" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 802, 92 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D31"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D31"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D32" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 439, 177 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.6 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D32"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D32"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D33" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 598, 90 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.2 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D33"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D33"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D34" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 512, 52 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D34"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D34"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D35" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 437, 176 )
+scale = Vector2( 0.1, 0.2 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D35"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D35"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D36" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 312, 94 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D36"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D36"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D37" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 204, 220 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D37"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D37"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D38" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 158, 265 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D38"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D38"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D39" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 53, 159 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D39"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D39"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D40" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 132, 378 )
+rotation = 4.71238
+scale = Vector2( 0.1, 0.3 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D40"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D40"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D41" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 490, 436 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D41"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D41"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D42" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 610, 543 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D42"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D42"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D43" type="StaticBody2D" parent="Paredes"]
+position = Vector2( 717, 541 )
+scale = Vector2( 0.1, 0.12 )
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D43"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Paredes/StaticBody2D43"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 12.4 )
+texture = ExtResource( 1 )
+
+[node name="Jugador" parent="." instance=ExtResource( 2 )]
+position = Vector2( 898, 135 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+visible = false
+current = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -631, -39 )
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+process_priority = 1
+position = Vector2( 675, 249 )
+rotation = 1.61361
+
+[node name="Enemigo1" parent="Path2D/PathFollow2D" instance=ExtResource( 3 )]
+position = Vector2( -0.97229, -2.01367 )
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2( 172, 72 )
+rotation = 0.00336603
+
+[node name="Enemigo2" parent="Path2D2/PathFollow2D" instance=ExtResource( 3 )]
+rotation = -0.00336603
+
+[node name="Path2D3" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2( 318, 439 )
+rotation = -1.59141
+
+[node name="Enemigo3" parent="Path2D3/PathFollow2D" instance=ExtResource( 3 )]
+
+[node name="Path2D4" type="Path2D" parent="."]
+curve = SubResource( 5 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D4"]
+position = Vector2( 558, 48 )
+rotation = -0.0168036
+
+[node name="Enemigo" parent="Path2D4/PathFollow2D" instance=ExtResource( 3 )]
+
+[node name="Path2D5" type="Path2D" parent="."]
+curve = SubResource( 6 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D5"]
+position = Vector2( 899, 71 )
+rotation = 0.00970652
+
+[node name="Enemigo" parent="Path2D5/PathFollow2D" instance=ExtResource( 3 )]
+
+[node name="Path2D6" type="Path2D" parent="."]
+curve = SubResource( 7 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D6"]
+position = Vector2( 1047, 233 )
+rotation = 3.13545
+
+[node name="Enemigo" parent="Path2D6/PathFollow2D" instance=ExtResource( 3 )]
+
+[node name="Path2D7" type="Path2D" parent="."]
+curve = SubResource( 8 )
+script = ExtResource( 4 )
+
+[node name="Monedas" type="Node2D" parent="."]
+
+[node name="Moneda" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 396, 226 )
+
+[node name="Moneda2" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 664, 549 )
+
+[node name="Moneda3" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 53, 71 )
+
+[node name="Moneda4" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 1217, 145 )
+
+[node name="Moneda5" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 1211, 467 )
+
+[node name="Moneda6" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 1130, 309 )
+
+[node name="Moneda7" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 53, 439 )
+
+[node name="Moneda8" parent="Monedas" instance=ExtResource( 5 )]
+position = Vector2( 823, 62 )
+
+[node name="Path2D8" type="Path2D" parent="."]
+curve = SubResource( 9 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D8"]
+position = Vector2( 434, 443 )
+rotation = 3.13832
+
+[node name="Enemigo" parent="Path2D8/PathFollow2D" instance=ExtResource( 3 )]
+
+[node name="Path2D9" type="Path2D" parent="."]
+curve = SubResource( 10 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D9"]
+position = Vector2( 1310, 58 )
+rotation = 1.59531
+
+[node name="Enemigo" parent="Path2D9/PathFollow2D" instance=ExtResource( 3 )]
